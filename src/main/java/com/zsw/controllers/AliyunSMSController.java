@@ -27,7 +27,7 @@ public class AliyunSMSController {
     RestTemplate restTemplate;
 
     @RequestMapping(value= MessageStaticURLUtil.aliyunSMSController_sendVerifyCode,
-            method= RequestMethod.POST)
+            method= RequestMethod.GET)
     @ResponseBody
     public String sendVerifyCode(String phone,String type) throws Exception {
         try {
@@ -44,7 +44,7 @@ public class AliyunSMSController {
 
             if("login".equals(type)){
                 type = CommonStaticWord.CacheServices_Redis_VerifyCode_Type_LOGIN;
-            }else if("restPassWord".equals(type)){
+            }else if("restPassword".equals(type)){
                 type = CommonStaticWord.CacheServices_Redis_VerifyCode_Type_REST_PASSWORD;
             }else{
                 responseJson.setCode("200");

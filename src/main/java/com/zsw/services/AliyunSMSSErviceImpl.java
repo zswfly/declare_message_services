@@ -12,6 +12,7 @@ import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
 import com.zsw.utils.CacheStaticURLUtil;
+import com.zsw.utils.CommonStaticWord;
 import com.zsw.utils.CommonUtils;
 import com.zsw.utils.UserStaticURLUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +75,7 @@ public class AliyunSMSSErviceImpl implements IAliyunSMSService{
         param.put("verifyCode",code);
         param.put("type",type);
         this.restTemplate.postForEntity(
-                "http://cache-services"
+                CommonStaticWord.HTTP + CommonStaticWord.cacheServices
                         + CacheStaticURLUtil.redisController
                         + CacheStaticURLUtil.redisController_setVerifyCode
                 ,param,null);
