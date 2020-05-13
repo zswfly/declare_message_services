@@ -37,7 +37,7 @@ public class AliyunSMSController {
             if (StringUtils.isBlank(phone)
                     ||!CommonUtils.isMobileNO(phone)
                     ) {
-                responseJson.setCode("200");
+                responseJson.setCode(ResponseCode.Code_String_500);
                 responseJson.setMessage("手机号码有误");
                 return gson.toJson(responseJson);
             }
@@ -47,18 +47,25 @@ public class AliyunSMSController {
             }else if("restPassword".equals(type)){
                 type = CommonStaticWord.CacheServices_Redis_VerifyCode_Type_REST_PASSWORD;
             }else{
-                responseJson.setCode("200");
+                responseJson.setCode(ResponseCode.Code_String_500);
                 responseJson.setMessage("短信验证码类型有误");
                 return gson.toJson(responseJson);
             }
 
             this.iAliyunSMSService.sendVerifySMS(phone,type);
-
+            responseJson.setCode(ResponseCode.Code_String_200);
             return gson.toJson(responseJson);
         }catch (Exception e){
             e.printStackTrace();
             return CommonUtils.ErrorResposeJson();
         }
     }
+
+//    @RequestMapping(value= MessageStaticURLUtil.aliyunSMSController_sendVerifyCode,
+//            method= RequestMethod.GET)
+//    @ResponseBody
+//    public String sendVerifyCode() throws Exception {
+//       return null;
+//    }
 
 }

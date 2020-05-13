@@ -39,7 +39,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8781/eureka/
 mybatis:
   type-aliases-package: com.zsw.daos
   mapper-locations: classpath:mybatis/mappers/*.xml
