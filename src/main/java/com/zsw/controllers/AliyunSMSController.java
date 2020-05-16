@@ -11,12 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 /**
  * Created by zhangshaowei on 2020/4/21.
  */
-@Controller
+@RestController
 @RequestMapping(MessageStaticURLUtil.aliyunSMSController)
 public class AliyunSMSController {
     @Autowired
@@ -28,7 +29,6 @@ public class AliyunSMSController {
 
     @RequestMapping(value= MessageStaticURLUtil.aliyunSMSController_sendVerifyCode,
             method= RequestMethod.GET)
-    @ResponseBody
     public String sendVerifyCode(String phone,String type) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
@@ -37,7 +37,7 @@ public class AliyunSMSController {
             if (StringUtils.isBlank(phone)
                     ||!CommonUtils.isMobileNO(phone)
                     ) {
-                responseJson.setCode(ResponseCode.Code_String_500);
+                responseJson.setCode(ResponseCode.Code_500);
                 responseJson.setMessage("手机号码有误");
                 return gson.toJson(responseJson);
             }
@@ -47,13 +47,13 @@ public class AliyunSMSController {
             }else if("restPassword".equals(type)){
                 type = CommonStaticWord.CacheServices_Redis_VerifyCode_Type_REST_PASSWORD;
             }else{
-                responseJson.setCode(ResponseCode.Code_String_500);
+                responseJson.setCode(ResponseCode.Code_500);
                 responseJson.setMessage("短信验证码类型有误");
                 return gson.toJson(responseJson);
             }
 
             this.iAliyunSMSService.sendVerifySMS(phone,type);
-            responseJson.setCode(ResponseCode.Code_String_200);
+            responseJson.setCode(ResponseCode.Code_200);
             return gson.toJson(responseJson);
         }catch (Exception e){
             e.printStackTrace();
