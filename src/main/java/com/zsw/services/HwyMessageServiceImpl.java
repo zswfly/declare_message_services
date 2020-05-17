@@ -48,8 +48,9 @@ public class HwyMessageServiceImpl implements HwyMessageService{
     @Value("${huawei.message.appSecret}")
     private String appSecret;
 
-    @Value("${huawei.message.sender}")
-    private String sender;
+
+    @Value("${huawei.message.sender_test}")
+    private String sender_test;
 
     @Value("${huawei.message.signature_test}")
     private String signature_test;
@@ -57,15 +58,25 @@ public class HwyMessageServiceImpl implements HwyMessageService{
     @Value("${huawei.message.templateId_test}")
     private String templateId_test;
 
+
+    @Value("${huawei.message.signature_linghui}")
+    private String signature_linghui;
+
+    @Value("${huawei.message.sender_linghui}")
+    private String sender_linghui;
+
+    @Value("${huawei.message.templateId_login}")
+    private String templateId_login;
+
+    @Value("${huawei.message.templateId_resetPassword}")
+    private String templateId_resetPassword;
+
+
     //TODO
     //选填,短信状态报告接收地址,推荐使用域名,为空或者不填表示不接收状态报告
     private String statusCallBack = "";
 
-//    @Value("${huawei.message}")
-//    private String sender;
-//
-//    @Value("${huawei.message}")
-//    private String sender;
+
 
     @Autowired
     RestTemplate restTemplate;
@@ -89,14 +100,22 @@ public class HwyMessageServiceImpl implements HwyMessageService{
                         + CacheStaticURLUtil.redisController_setVerifyCode
                 ,param,null);
 
+
+        String templateId = null;
+        if(CommonStaticWord.CacheServices_Redis_VerifyCode_Type_LOGIN.equals(type)){
+            templateId = templateId_login;
+        }else if(CommonStaticWord.CacheServices_Redis_VerifyCode_Type_REST_PASSWORD.equals(type)){
+            templateId = templateId_resetPassword;
+        }
+
         //请求Body,不携带签名名称时,signature请填null
         String body = HuaweiyunMessageUtils.buildRequestBody(
-                sender,
+                sender_linghui,
                 "+86" + phone,
-                templateId_test,
+                templateId,
                 templateParas,
                 statusCallBack,
-                signature_test
+                signature_linghui
         );
         if (null == body || body.isEmpty()) {
             System.out.println("body is null.");
