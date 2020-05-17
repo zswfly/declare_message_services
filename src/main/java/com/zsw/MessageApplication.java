@@ -1,9 +1,9 @@
 package com.zsw;
-
-import com.aliyuncs.DefaultAcsClient;
-import com.aliyuncs.IAcsClient;
-import com.aliyuncs.profile.DefaultProfile;
-import com.aliyuncs.profile.IClientProfile;
+//
+//import com.aliyuncs.DefaultAcsClient;
+//import com.aliyuncs.IAcsClient;
+//import com.aliyuncs.profile.DefaultProfile;
+//import com.aliyuncs.profile.IClientProfile;
 import javafx.application.Application;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -47,24 +47,24 @@ public class MessageApplication extends SpringBootServletInitializer {
 		return new RestTemplate();
 	}
 
-	@Bean
-	public IClientProfile iClientProfile() throws Exception{
-		//设置超时时间-可自行调整
-		System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
-		System.setProperty("sun.net.client.defaultReadTimeout", "10000");
-		//初始化ascClient需要的几个参数
-		final String product = "Dysmsapi";//短信API产品名称（短信产品名固定，无需修改）
-		final String domain = "dysmsapi.aliyuncs.com";//短信API产品域名（接口地址固定，无需修改）
-		//替换成你的AK
-		final String accessKeyId = "yourAccessKeyId";//你的accessKeyId,参考本文档步骤2
-		final String accessKeySecret = "yourAccessKeySecret";//你的accessKeySecret，参考本文档步骤2
-		//初始化ascClient,暂时不支持多region（请勿修改）
-		IClientProfile iClientProfile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
-		//DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
-
-		//DefaultProfile.addEndpoint("cn-hangzhou",product);   //String regionId, String product, String endpoint
-		return iClientProfile;
-	}
+//	@Bean
+//	public IClientProfile iClientProfile() throws Exception{
+//		//设置超时时间-可自行调整
+//		System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
+//		System.setProperty("sun.net.client.defaultReadTimeout", "10000");
+//		//初始化ascClient需要的几个参数
+//		final String product = "Dysmsapi";//短信API产品名称（短信产品名固定，无需修改）
+//		final String domain = "dysmsapi.aliyuncs.com";//短信API产品域名（接口地址固定，无需修改）
+//		//替换成你的AK
+//		final String accessKeyId = "yourAccessKeyId";//你的accessKeyId,参考本文档步骤2
+//		final String accessKeySecret = "yourAccessKeySecret";//你的accessKeySecret，参考本文档步骤2
+//		//初始化ascClient,暂时不支持多region（请勿修改）
+//		IClientProfile iClientProfile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
+//		//DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
+//
+//		//DefaultProfile.addEndpoint("cn-hangzhou",product);   //String regionId, String product, String endpoint
+//		return iClientProfile;
+//	}
 
 
 }
