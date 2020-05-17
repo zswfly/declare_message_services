@@ -23,7 +23,7 @@ public class HwyMessageController {
     @Autowired
     HwyMessageService hwyMessageService;
 
-    @RequestMapping(value= MessageStaticURLUtil.aliyunSMSController_sendVerifyCode,
+    @RequestMapping(value= MessageStaticURLUtil.hwyMessageController_sendVerifyCode,
             method= RequestMethod.GET)
     public String sendVerifyCode(String phone,String type) throws Exception {
         try {

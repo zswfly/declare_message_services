@@ -33,38 +33,38 @@ public class HwyMessageServiceImpl implements HwyMessageService{
 
     private static final long serialVersionUID = -319832845159453580L;
 
-    @Value("%{huawei.message.WSSE_HEADER_FORMAT}")
+    @Value("${huawei.message.WSSE_HEADER_FORMAT}")
     private String WSSE_HEADER_FORMAT;
 
-    @Value("%{huawei.message.AUTH_HEADER_VALUE}")
+    @Value("${huawei.message.AUTH_HEADER_VALUE}")
     private String AUTH_HEADER_VALUE;
 
-    @Value("%{huawei.message.url}")
+    @Value("${huawei.message.url}")
     private String url;
 
-    @Value("%{huawei.message.appKey}")
+    @Value("${huawei.message.appKey}")
     private String appKey;
 
-    @Value("%{huawei.message.appSecret}")
+    @Value("${huawei.message.appSecret}")
     private String appSecret;
 
-    @Value("%{huawei.message.sender}")
+    @Value("${huawei.message.sender}")
     private String sender;
 
-    @Value("%{huawei.message.signature_test}")
+    @Value("${huawei.message.signature_test}")
     private String signature_test;
 
-    @Value("%{huawei.message.templateId_test}")
+    @Value("${huawei.message.templateId_test}")
     private String templateId_test;
 
     //TODO
     //选填,短信状态报告接收地址,推荐使用域名,为空或者不填表示不接收状态报告
     private String statusCallBack = "";
 
-//    @Value("%{huawei.message}")
+//    @Value("${huawei.message}")
 //    private String sender;
 //
-//    @Value("%{huawei.message}")
+//    @Value("${huawei.message}")
 //    private String sender;
 
     @Autowired
