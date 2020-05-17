@@ -17,49 +17,49 @@ import org.springframework.web.client.RestTemplate;
 /**
  * Created by zhangshaowei on 2020/4/21.
  */
-@RestController
-@RequestMapping(MessageStaticURLUtil.aliyunSMSController)
+//@RestController
+//@RequestMapping(MessageStaticURLUtil.aliyunSMSController)
 public class AliyunSMSController {
-    @Autowired
-    IAliyunSMSService iAliyunSMSService;
+//    @Autowired
+//    IAliyunSMSService iAliyunSMSService;
+//
+//
+//    @Autowired
+//    RestTemplate restTemplate;
 
-
-    @Autowired
-    RestTemplate restTemplate;
-
-    @RequestMapping(value= MessageStaticURLUtil.aliyunSMSController_sendVerifyCode,
-            method= RequestMethod.GET)
-    public String sendVerifyCode(String phone,String type) throws Exception {
-        try {
-            ResponseJson responseJson = new ResponseJson();
-            Gson gson = new Gson();
-
-            if (StringUtils.isBlank(phone)
-                    ||!CommonUtils.isMobileNO(phone)
-                    ) {
-                responseJson.setCode(ResponseCode.Code_500);
-                responseJson.setMessage("手机号码有误");
-                return gson.toJson(responseJson);
-            }
-
-            if("login".equals(type)){
-                type = CommonStaticWord.CacheServices_Redis_VerifyCode_Type_LOGIN;
-            }else if("restPassword".equals(type)){
-                type = CommonStaticWord.CacheServices_Redis_VerifyCode_Type_REST_PASSWORD;
-            }else{
-                responseJson.setCode(ResponseCode.Code_500);
-                responseJson.setMessage("短信验证码类型有误");
-                return gson.toJson(responseJson);
-            }
-
-            this.iAliyunSMSService.sendVerifySMS(phone,type);
-            responseJson.setCode(ResponseCode.Code_200);
-            return gson.toJson(responseJson);
-        }catch (Exception e){
-            e.printStackTrace();
-            return CommonUtils.ErrorResposeJson();
-        }
-    }
+//    @RequestMapping(value= MessageStaticURLUtil.aliyunSMSController_sendVerifyCode,
+//            method= RequestMethod.GET)
+//    public String sendVerifyCode(String phone,String type) throws Exception {
+//        try {
+//            ResponseJson responseJson = new ResponseJson();
+//            Gson gson = new Gson();
+//
+//            if (StringUtils.isBlank(phone)
+//                    ||!CommonUtils.isMobileNO(phone)
+//                    ) {
+//                responseJson.setCode(ResponseCode.Code_500);
+//                responseJson.setMessage("手机号码有误");
+//                return gson.toJson(responseJson);
+//            }
+//
+//            if("login".equals(type)){
+//                type = CommonStaticWord.CacheServices_Redis_VerifyCode_Type_LOGIN;
+//            }else if("restPassword".equals(type)){
+//                type = CommonStaticWord.CacheServices_Redis_VerifyCode_Type_REST_PASSWORD;
+//            }else{
+//                responseJson.setCode(ResponseCode.Code_500);
+//                responseJson.setMessage("短信验证码类型有误");
+//                return gson.toJson(responseJson);
+//            }
+//
+//            //this.iAliyunSMSService.sendVerifySMS(phone,type);
+//            responseJson.setCode(ResponseCode.Code_200);
+//            return gson.toJson(responseJson);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            return CommonUtils.ErrorResposeJson();
+//        }
+//    }
 
 //    @RequestMapping(value= MessageStaticURLUtil.aliyunSMSController_sendVerifyCode,
 //            method= RequestMethod.GET)
