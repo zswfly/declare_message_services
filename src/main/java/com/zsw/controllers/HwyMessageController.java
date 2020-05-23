@@ -1,6 +1,7 @@
 package com.zsw.controllers;
 
 import com.google.gson.Gson;
+import com.zsw.controller.BaseController;
 import com.zsw.entitys.common.ResponseJson;
 import com.zsw.services.HwyMessageService;
 import com.zsw.utils.CommonStaticWord;
@@ -8,6 +9,8 @@ import com.zsw.utils.CommonUtils;
 import com.zsw.utils.MessageStaticURLUtil;
 import com.zsw.utils.ResponseCode;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(MessageStaticURLUtil.hwyMessageController)
-public class HwyMessageController {
+public class HwyMessageController extends BaseController {
+
+    private static final Logger LOG = LoggerFactory.getLogger(HwyMessageController.class);
 
     @Autowired
     HwyMessageService hwyMessageService;
@@ -54,6 +59,7 @@ public class HwyMessageController {
             return gson.toJson(responseJson);
         }catch (Exception e){
             e.printStackTrace();
+            LOG.error("error",e);
             return CommonUtils.ErrorResposeJson();
         }
     }
