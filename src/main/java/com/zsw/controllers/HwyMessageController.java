@@ -58,9 +58,13 @@ public class HwyMessageController extends BaseController {
             responseJson.setCode(ResponseCode.Code_200);
             return gson.toJson(responseJson);
         }catch (Exception e){
-            e.printStackTrace();
-            LOG.error("error",e);
+            CommonUtils.ErrorAction(LOG,e);
             return CommonUtils.ErrorResposeJson();
         }
+    }
+
+    @Override
+    public Logger getLOG(){
+        return this.LOG;
     }
 }

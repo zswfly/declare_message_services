@@ -1,11 +1,13 @@
 package com.zsw.controllers;
 
 import com.google.gson.Gson;
+import com.zsw.controller.BaseController;
 import com.zsw.entitys.common.ResponseJson;
 import com.zsw.entitys.user.LoginTemp;
 import com.zsw.services.IAliyunSMSService;
 import com.zsw.utils.*;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +21,12 @@ import org.springframework.web.client.RestTemplate;
  */
 //@RestController
 //@RequestMapping(MessageStaticURLUtil.aliyunSMSController)
-public class AliyunSMSController {
+public class AliyunSMSController extends BaseController {
 //    @Autowired
 //    IAliyunSMSService iAliyunSMSService;
-//
+
+//    private static final Logger LOG = LoggerFactory.getLogger(AliyunSMSController.class);
+
 //
 //    @Autowired
 //    RestTemplate restTemplate;
@@ -66,6 +70,11 @@ public class AliyunSMSController {
 //    @ResponseBody
 //    public String sendVerifyCode() throws Exception {
 //       return null;
+//    }
+
+//    @Override
+//    public Logger getLOG(){
+//        return this.LOG;
 //    }
 
 }
